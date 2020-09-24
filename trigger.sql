@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER chacabum BEFORE
+CREATE OR REPLACE TRIGGER trigger_on_insert_employee BEFORE
     INSERT ON employees
     FOR EACH ROW
 DECLARE
@@ -19,14 +19,6 @@ BEGIN
         :new.department_id := 20;
     END IF;
 END;
-
-SELECT
-    *
-FROM
-    employees
-ORDER BY
-    employee_id DESC
-FETCH NEXT 2 ROWS ONLY;
 
 INSERT INTO employees VALUES (
     208,
@@ -56,3 +48,10 @@ INSERT INTO employees VALUES (
     221
 );
 
+SELECT
+    *
+FROM
+    employees
+ORDER BY
+    employee_id DESC
+FETCH NEXT 2 ROWS ONLY;

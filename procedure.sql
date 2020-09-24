@@ -1,10 +1,23 @@
-create or replace procedure alter_salary(id_dep number, n_percentage number)
-is 
-    var_modifier float := 1 + (n_percentage /  100);
-    cursor cur_employees is select last_name from employees where department_id = id_dep;
-begin
-    update employees
-        set salary = salary * var_modifier
-        where department_id = id_dep;
-    commit;
-end;
+CREATE OR REPLACE PROCEDURE alter_salary (
+    id_dep         NUMBER,
+    n_percentage   NUMBER
+) IS
+
+    var_modifier FLOAT := 1 + ( n_percentage / 100 );
+    CURSOR cur_employees IS
+    SELECT
+        last_name
+    FROM
+        employees
+    WHERE
+        department_id = id_dep;
+
+BEGIN
+    UPDATE employees
+    SET
+        salary = salary * var_modifier
+    WHERE
+        department_id = id_dep;
+
+    COMMIT;
+END;
